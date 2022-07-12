@@ -1,0 +1,3 @@
+# Token types go here
+NUMERICAL = "NUMERICAL"
+OPERATOR = "OPERATOR"
