@@ -1,8 +1,6 @@
-"""Reads the array of token received from tokenizer and populates relevant Stack structure depending on token type"""
-from webbrowser import get
-from utils.stack import Stack
-# create numerical and operator stack
-# adds th
+from utils import Stack
+
+Priority = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
 
 
 class Parser():
