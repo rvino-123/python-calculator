@@ -1,5 +1,4 @@
 import unittest
-import main
 
 
 class test_calculator(unittest.TestCase):
@@ -210,7 +209,6 @@ class test_calculator(unittest.TestCase):
         test_param = '8.5 * 5 * 20.9 / 6'
         result = main.calculate(test_param)
         self.assertEqual(result, 148.04166666666666)
-
 
     # TODO for future iteration add tests for roots
     # TODO for future iteration add tests for logarithms
