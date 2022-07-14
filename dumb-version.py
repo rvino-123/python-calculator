@@ -161,7 +161,8 @@ def calculate(calculateQueue):
     # push the evaluation result back into the stack
 
 
-my_tokens = tokenize(string2)
+my_tokens = tokenize(string1)
 print(my_tokens)
 parsedTokens = parse(my_tokens)
+print(parsedTokens)
 print(calculate(parsedTokens))
