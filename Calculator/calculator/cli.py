@@ -1,6 +1,5 @@
 from calculate import Calculator
 import commands
-import sys
 
 OPTIONS = {
     "QUIT": ["q", "Q", "quit"],
@@ -13,16 +12,21 @@ calculator = Calculator()
 
 
 def runCLI():
-    while True:
-        command = input("calculator> ")
-        if bool([e for e in OPTIONS["HELP"] if (e in command)]):
-            commands.help()
-            continue
-        if bool([e for e in OPTIONS["QUIT"] if (e in command)]):
-            commands.quit()
-        result = calculator.calculate(command)
-        print(result)
+    try:
+        while True:
+            command = input("calculator> ")
+            if bool([e for e in OPTIONS["HELP"] if (e in command)]):
+                commands.help()
+                continue
+            if bool([e for e in OPTIONS["QUIT"] if (e in command)]):
+                commands.quit()
+            result = calculator.calculate(command)
+            print(result)
+    except AttributeError as err:
+        print("ERROR: You entered an invalid character")
+        commands.quit()
+    except ZeroDivisionError as err:
+        print("ERROR: Can't divide by zero")
 
 
-print(sys.path)
 runCLI()

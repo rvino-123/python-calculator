@@ -6,6 +6,7 @@ calculator = Calculator()
 class test_calculator(unittest.TestCase):
     # misc tests
     def test_ignore_spaces(self):
+        """2 + 2 + 5"""
         test_param_spaces = "2 + 2 + 5"
         test_param_no_spaces = "2+2+5"
         result_spaces = calculator.calculate(test_param_spaces)
