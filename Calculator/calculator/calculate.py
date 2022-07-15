@@ -1,6 +1,14 @@
 from parser import Parser
 from tokenizer import Tokenizer
-from utils import Stack, calculations
+from utils import Stack
+
+CALCULATIONS = {
+    "+": lambda a, b:  a + b,
+    '-': lambda a, b: a - b,
+    '*': lambda a, b: a * b,
+    '/': lambda a, b: b / a,
+    '^': lambda a, b: a ^ b
+}
 
 
 class Calculator():
@@ -12,16 +20,14 @@ class Calculator():
     def calculate(self, str):
         tokens = self._tokenizer.tokenize(str)
         parsedTokensQueue = self._parser.parse(tokens)
-        print(parsedTokensQueue)
 
         while parsedTokensQueue:
             token = parsedTokensQueue.popleft()
             if token not in ['*', '+', '-', '/', '^']:
                 self._calculatorStack.push(token)
             else:
-                result = calculations[token](
+                result = CALCULATIONS[token](
                     float(self._calculatorStack.pop()), float(self._calculatorStack.pop()))
-                print(result)
                 self._calculatorStack.push(result)
 
         return result
