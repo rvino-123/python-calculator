@@ -2,13 +2,12 @@ import tokentypes
 from utils import Stack
 from collections import deque
 
-Priority = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
-Operators = set(['+', '-', '*', '/', '(', ')', '^'])
+OPERATOR_PRIORITY = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+OPERATORS = set(['+', '-', '*', '/', '(', ')', '^'])
 
 
 class Parser():
     """Holds and returns the numerical and operator stacks after populating them"""
-
     @staticmethod
     def parse(tokens):
         """Iterates through the tokens and returns a queue in postfix notation format"""
@@ -20,7 +19,7 @@ class Parser():
             currentTokenType = token.tokenType
             currentTokenValue = token.value
 
-            if currentTokenValue not in Operators:
+            if currentTokenValue not in OPERATORS:
                 if currentTokenType == tokentypes.NUMERIC:
                     intBuffer += currentTokenValue
 
@@ -41,7 +40,7 @@ class Parser():
                     parseQueue.append(intBuffer)
                     intBuffer = ""
 
-                while parseStack and parseStack.peek() != '(' and Priority[currentTokenValue] <= Priority[parseStack.peek()]:
+                while parseStack and parseStack.peek() != '(' and OPERATOR_PRIORITY[currentTokenValue] <= OPERATOR_PRIORITY[parseStack.peek()]:
                     parseQueue.append(parseStack.pop())
                 parseStack.push(currentTokenValue)
 
