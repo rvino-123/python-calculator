@@ -19,12 +19,3 @@ class Stack:
 
     def __len__(self):
         return len(self._container)
-
-
-calculations = {
-    "+": lambda a, b:  a + b,
-    '-': lambda a, b: a - b,
-    '*': lambda a, b: a * b,
-    '/': lambda a, b: b / a,
-    '^': lambda a, b: a ^ b
-}
