@@ -4,10 +4,10 @@ from utils import Stack
 
 CALCULATIONS = {
     "+": lambda a, b:  a + b,
-    '-': lambda a, b: a - b,
+    '-': lambda b, a: a - b,
     '*': lambda a, b: a * b,
     '/': lambda a, b: b / a,
-    '^': lambda a, b: a ^ b
+    '^': lambda a, b: b ^ a
 }
 
 
@@ -26,6 +26,7 @@ class Calculator():
             if token not in ['*', '+', '-', '/', '^']:
                 self._calculatorStack.push(token)
             else:
+                print(token)
                 result = CALCULATIONS[token](
                     float(self._calculatorStack.pop()), float(self._calculatorStack.pop()))
                 self._calculatorStack.push(result)
