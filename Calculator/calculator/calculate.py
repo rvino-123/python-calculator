@@ -29,8 +29,6 @@ class Calculator():
                 print(token)
                 result = CALCULATIONS[token](
                     float(self._calculatorStack.pop()), float(self._calculatorStack.pop()))
-                print(result)
                 self._calculatorStack.push(result)
-                print(self._calculatorStack.printWholeStack())
 
         return result
