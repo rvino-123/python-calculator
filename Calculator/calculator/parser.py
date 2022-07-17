@@ -14,10 +14,14 @@ class Parser():
         parseStack = Stack()
         parseQueue = deque()
         intBuffer = ""  # to combine multiple numeric tokens for multi-digit numbers
-
+        lastTokenType = None
         for token in tokens:
             currentTokenType = token.tokenType
             currentTokenValue = token.value
+            if currentTokenType == lastTokenType and currentTokenValue == '-':
+                intBuffer += currentTokenValue
+                lastTokenType = currentTokenType
+                continue
 
             if currentTokenValue not in OPERATORS:
                 if currentTokenType == tokentypes.NUMERIC:
@@ -40,9 +44,13 @@ class Parser():
                     parseQueue.append(intBuffer)
                     intBuffer = ""
 
+                # if last operator was a sign and not * / add to buffer
+                # if parseStack and parseStack.peek() in OPERATORS:
+                #     intBuffer += currentTokenValue
                 while parseStack and parseStack.peek() != '(' and OPERATOR_PRIORITY[currentTokenValue] <= OPERATOR_PRIORITY[parseStack.peek()]:
                     parseQueue.append(parseStack.pop())
                 parseStack.push(currentTokenValue)
+            lastTokenType = currentTokenType
 
         # empties any remaining numbers and operators
         if intBuffer != "":
