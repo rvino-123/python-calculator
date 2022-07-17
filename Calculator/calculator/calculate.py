@@ -26,7 +26,6 @@ class Calculator():
             if token not in ['*', '+', '-', '/', '^']:
                 self._calculatorStack.push(token)
             else:
-                print(token)
                 result = CALCULATIONS[token](
                     float(self._calculatorStack.pop()), float(self._calculatorStack.pop()))
                 self._calculatorStack.push(result)
