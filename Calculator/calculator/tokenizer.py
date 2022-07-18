@@ -9,6 +9,7 @@ class Tokenizer():
         tokenQueue = []
         # Get rid of all spaces
         text_no_spaces = str.replace(" ", "")
+        # Instantiates tokens using Token class method
         for c in text_no_spaces:
             token = tokentypes.Token.createTokenFromChar(c)
             tokenQueue.append(token)

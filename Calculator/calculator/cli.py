@@ -7,11 +7,12 @@ OPTIONS = {
     # FUTURE IMPLEMENTATIONS WILL ALLOW TO USE THE PREVIOUS ANSWER FOR NEXT CALCULATION
 }
 
-
+# instantiate Caculator
 calculator = Calculator()
 
 
 def runCLI():
+    """Accepts user input and returns the calculated result or runs a command function if it detects them"""
     try:
         while True:
             command = input("calculator> ")
@@ -25,8 +26,11 @@ def runCLI():
     except AttributeError as err:
         print("ERROR: You entered an invalid character")
         commands.quit()
-    except ZeroDivisionError as err:
+    except ZeroDivisionError:
         print("ERROR: Can't divide by zero")
+    except KeyboardInterrupt:
+        print("\nProgram exited succesfully.")
+        commands.quit()
 
 
 runCLI()

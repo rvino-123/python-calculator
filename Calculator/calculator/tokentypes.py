@@ -1,3 +1,5 @@
+"""Provies the Token class and global variables for categorizing Tokens."""
+
 # Token types go here
 NUMERIC = "NUMERIC"
 OPERATOR = "OPERATOR"
