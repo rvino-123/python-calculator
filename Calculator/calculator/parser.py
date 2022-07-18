@@ -2,8 +2,8 @@ import tokentypes
 from utils import Stack
 from collections import deque
 
-OPERATOR_PRIORITY = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
-OPERATORS = set(['+', '-', '*', '/', '(', ')', '^'])
+OPERATOR_PRIORITY = {'+': 1, '-': 1, '*': 2, '/': 2}
+OPERATORS = set(['+', '-', '*', '/', '(', ')'])
 
 
 class Parser():
@@ -18,6 +18,15 @@ class Parser():
         for token in tokens:
             currentTokenType = token.tokenType
             currentTokenValue = token.value
+
+            if currentTokenType == tokentypes.DECIMAL:
+                intBuffer += currentTokenValue
+
+            if lastTokenType == None and currentTokenValue == '-':
+                intBuffer += currentTokenValue
+                lastTokenType = currentTokenType
+                continue
+
             if currentTokenType == lastTokenType and currentTokenValue == '-':
                 intBuffer += currentTokenValue
                 lastTokenType = currentTokenType

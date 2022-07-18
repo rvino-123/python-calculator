@@ -1,6 +1,7 @@
 from parser import Parser
 from tokenizer import Tokenizer
 from utils import Stack
+from decimal import *
 
 CALCULATIONS = {
     "+": lambda a, b:  a + b,
@@ -27,7 +28,7 @@ class Calculator():
                 self._calculatorStack.push(token)
             else:
                 result = CALCULATIONS[token](
-                    float(self._calculatorStack.pop()), float(self._calculatorStack.pop()))
+                    Decimal(self._calculatorStack.pop()), Decimal(self._calculatorStack.pop()))
                 self._calculatorStack.push(result)
 
-        return result
+        return float(result)
