@@ -1,6 +1,7 @@
 # Token types go here
 NUMERIC = "NUMERIC"
 OPERATOR = "OPERATOR"
+DECIMAL = "DECIMAL"
 OPERATORS = ('*', '/', '-', '+', '(', ')')
 
 
@@ -24,3 +25,5 @@ class Token():
             return cls(value, NUMERIC)
         elif value in OPERATORS:
             return cls(value, OPERATOR)
+        elif value == '.':
+            return cls(value, DECIMAL)
