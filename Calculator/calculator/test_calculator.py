@@ -217,4 +217,4 @@ class test_calculator(unittest.TestCase):
     # TODO for future iteration add tests for roots
     # TODO for future iteration add tests for logarithms
     # TODO for future iterations add tests for trigonometric functions
-unittest.main()
+# unittest.main()
