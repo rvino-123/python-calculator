@@ -29,7 +29,6 @@ def runCLI():
     except ZeroDivisionError:
         print("ERROR: Can't divide by zero")
     except KeyboardInterrupt:
-        print("\nProgram exited succesfully.")
         commands.quit()
 
 

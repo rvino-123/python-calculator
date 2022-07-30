@@ -5,5 +5,5 @@ def help():
 
 def quit():
     """Exits program."""
-    print("Program Exited Succesfully.")
+    print("\nProgram Exited Succesfully.")
     exit(0)
