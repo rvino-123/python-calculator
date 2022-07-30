@@ -1,3 +1,4 @@
+from decimal import Decimal
 import unittest
 from calculate import Calculator
 
@@ -24,13 +25,13 @@ class test_calculator(unittest.TestCase):
     def test_ignore_trailing_spaces(self):
         test_param = "       2 + 5 + 8 + 9   "
         result = calculator.calculate(test_param)
-        self.assertEqual(test_param, 24)
+        self.assertEqual(result, 24.0)
     # TODO Add some error handling tests
 
     def test_raise_zero_division_error(self):
         test_params = "2 / 0"
-        result = calculator.calculate(test_params)
-        self.assertRaises()
+        with self.assertRaises(ZeroDivisionError):
+            calculator.calculate(test_params)
 
     # addition
     def test_simple_int_addition(self):
@@ -144,7 +145,7 @@ class test_calculator(unittest.TestCase):
     def test_longer_float_division(self):
         test_params = "55.3 / 6.1 / 2.2"
         result = calculator.calculate(test_params)
-        self.assertEqual(result, 4.120715350223546)
+        self.assertAlmostEqual(result, 4.12071535022)
 
     def test_negative_integer_division(self):
         test_params = "-6 * -2"

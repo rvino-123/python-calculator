@@ -1,9 +1,15 @@
 """Provies the Token class and global variables for categorizing Tokens."""
+from enum import Enum
 
 # Token types go here
-NUMERIC = "NUMERIC"
-OPERATOR = "OPERATOR"
-DECIMAL = "DECIMAL"
+
+
+class TokenType(Enum):
+    NUMERIC = 1
+    OPERATOR = 2
+    DECIMAL = 3
+
+
 OPERATORS = ('*', '/', '-', '+', '(', ')')
 
 
@@ -24,8 +30,8 @@ class Token():
     def createTokenFromChar(cls, value):
         """conditionally creates token with TokenType pre-populated depending on value"""
         if value.isnumeric():
-            return cls(value, NUMERIC)
+            return cls(value, TokenType.NUMERIC)
         elif value in OPERATORS:
-            return cls(value, OPERATOR)
+            return cls(value, TokenType.OPERATOR)
         elif value == '.':
-            return cls(value, DECIMAL)
+            return cls(value, TokenType.DECIMAL)

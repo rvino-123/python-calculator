@@ -1,5 +1,5 @@
 from parser import Parser, OPERATORS
-from tokenizer import Tokenizer
+from tokenizer import tokenize
 from utils import Stack
 from decimal import *
 
@@ -17,13 +17,12 @@ class Calculator():
     """Composed with Tokenizer, Parser, and Stack class uses those in conjunction to perform a calculation"""
 
     def __init__(self):
-        self._tokenizer = Tokenizer()
         self._parser = Parser()
         self._calculatorStack = Stack()
 
     def calculate(self, str):
         """accepts string, converts it into a queue of characters in post fix notation and cacluates the result"""
-        tokens = self._tokenizer.tokenize(str)
+        tokens = tokenize(str)
         parsedTokensQueue = self._parser.parse(tokens)
 
         # Remove elements from the queue one by one

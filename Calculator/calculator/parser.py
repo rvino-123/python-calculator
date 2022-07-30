@@ -1,4 +1,4 @@
-import tokentypes
+from tokentypes import TokenType
 from utils import Stack
 from collections import deque
 
@@ -22,7 +22,7 @@ class Parser():
             currentTokenValue = token.value
 
             # In case decimal is found
-            if currentTokenType == tokentypes.DECIMAL:
+            if currentTokenType == TokenType.DECIMAL:
                 intBuffer += currentTokenValue
 
             # If first token is negative, ensures it will form a negative integer
@@ -39,7 +39,7 @@ class Parser():
 
             # For building multiple digit values
             if currentTokenValue not in OPERATORS:
-                if currentTokenType == tokentypes.NUMERIC:
+                if currentTokenType == TokenType.NUMERIC:
                     intBuffer += currentTokenValue
 
             # To deal with paranthesese
