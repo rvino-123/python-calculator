@@ -1,4 +1,4 @@
-from decimal import Decimal
+import math
 import unittest
 from calculate import Calculator
 
@@ -158,25 +158,25 @@ class test_calculator(unittest.TestCase):
         self.assertEqual(result, 3)
 
     # Exponentials
-    # def test_squaring_integer(self):
-    #     test_param = '2^2'
-    #     result = calculator.calculate(test_param)
-    #     self.assertEqual(result, 4)
+    def test_squaring_integer(self):
+        test_param = '2^2'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, 4)
 
-    # def test_squaring_float(self):
-    #     test_param = '2.5^2'
-    #     result = calculator.calculate(test_param)
-    #     self.assertEqual(result, 6.25)
+    def test_squaring_float(self):
+        test_param = '2.5^2'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, 6.25)
 
-    # def test_cubing_integer(self):
-    #     test_param = '2^3'
-    #     result = calculator.calculate(test_param)
-    #     self.assertEqual(result, 8)
+    def test_cubing_integer(self):
+        test_param = '2^3'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, 8)
 
-    # def test_cubing_float(self):
-    #     test_param = '3.33^3'
-    #     result = calculator.calculate(test_param)
-    #     self.assertEqual(result, 36.926037)
+    def test_cubing_float(self):
+        test_param = '3.33^3'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, 36.926037)
 
     #  Operations inolving brackets
     def test_int_addition_in_brackets(self):
@@ -218,4 +218,32 @@ class test_calculator(unittest.TestCase):
     # TODO for future iteration add tests for roots
     # TODO for future iteration add tests for logarithms
     # TODO for future iterations add tests for trigonometric functions
-# unittest.main()
+    def test_sin_standalone(self):
+        test_param = 'sin(30)'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, math.sin(30))
+
+    def test_cos_standalone(self):
+        test_param = 'cos(45)'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, math.cos(45))
+
+    def test_sin_mixed(self):
+        test_param = '30 * 5 - (sin(45) + 12)'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, 30 * 5 - (math.sin(45) + 12))
+
+    def test_cos_mixed(self):
+        test_param = '30 * 5 - (cos(45) + 12)'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, 30 * 5 - (math.cos(45) + 12))
+
+    def test_tan_standalone(self):
+        test_param = 'tan(30)'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, math.tan(30))
+
+    def test_tan_mixed(self):
+        test_param = '30 * 5 - (tan(45) + 12)'
+        result = calculator.calculate(test_param)
+        self.assertEqual(result, 30 * 5 - (math.tan(45) + 12))
