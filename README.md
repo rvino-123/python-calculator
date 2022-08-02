@@ -75,6 +75,26 @@ calculator> quit
 Program Exited Succesfully.
 ```
 
+### **NEW FEATURES 02/08/22**
+
+- Power functions
+
+```
+python3.10 Calculator/calculator/main.py
+# Enter your statement/command here
+calculator> 2 ^ 10
+1024.0
+```
+
+- Trigonometric functions
+
+```
+python3.10 Calculator/calculator/main.py
+# Enter your statement/command here
+calculator> cos(45)
+0.5253219888177297
+```
+
 # What I learned from this project
 
 - I learned to appreciate the signifiance between how humans interpret a statement and how machines would. I convert the provided statement into postfix notation (two numbers preceding an operator) because, although not as understandble to humans, it is more clear to the machine what operation and inputs are used.
@@ -85,8 +105,8 @@ Program Exited Succesfully.
 
 ## Future Work
 
-- Ability to raise a number to a certain power
-- offer functions such as trigonometric, log, exponential, root etc..
+- ~~Ability to raise a number to a certain power~~ ✅ 02/08/22
+- ~~offer functions such as trigonometric, log, exponential, root etc..~~ ✅ 02/08/22
 - allow user to specify how many significant figures they'd like the output to return.
 - store the previous result in memory so that it can be used in a subsequent calculation i.e. `ans + 5` where ans is the result of the previous calculation
 

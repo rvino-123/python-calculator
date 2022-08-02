@@ -1,5 +1,8 @@
-from parser import Parser, OPERATORS
+from lib2to3.pgen2.token import OP
+from struct import pack
+from parser import Parser
 from tokenizer import tokenize
+from tokentypes import Operators
 from utils import Stack
 from decimal import *
 
@@ -9,7 +12,7 @@ CALCULATIONS = {
     '-': lambda b, a: a - b,
     '*': lambda a, b: a * b,
     '/': lambda a, b: b / a,
-    '^': lambda a, b: a ** b  # TO BE IMPELEMENTED IN FUTURE
+    '^': lambda a, b: b ** a
 }
 
 
@@ -21,14 +24,17 @@ class Calculator():
         self._calculatorStack = Stack()
 
     def calculate(self, str):
-        """accepts string, converts it into a queue of characters in post fix notation and cacluates the result"""
+        """Accepts string, converts it into a queue of characters in post fix notation and cacluates the result"""
         tokens = tokenize(str)
         parsedTokensQueue = self._parser.parse(tokens)
+
+        if len(parsedTokensQueue) == 1 and parsedTokensQueue[0] not in Operators.get_operators_list():
+            return float(parsedTokensQueue.popleft())
 
         # Remove elements from the queue one by one
         while parsedTokensQueue:
             token = parsedTokensQueue.popleft()
-            if token not in OPERATORS:
+            if token not in Operators.get_operators_list():
                 self._calculatorStack.push(token)
             else:
                 result = CALCULATIONS[token](
