@@ -1,9 +1,11 @@
-from tokentypes import TokenType
+from tokentypes import TokenType, Operators
 from utils import Stack
 from collections import deque
 
-OPERATOR_PRIORITY = {'+': 1, '-': 1, '*': 2, '/': 2}
-OPERATORS = set(['+', '-', '*', '/', '(', ')'])
+# Add '^' here, should have a high priority
+# TODO replace with operator enum
+
+OPERATOR_PRIORITY = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
 
 
 class Parser():
@@ -13,6 +15,7 @@ class Parser():
         """Iterates through the tokens and returns a queue in postfix notation format"""
         parseStack = Stack()
         parseQueue = deque()
+        # TODO function buffer
         intBuffer = ""  # to combine multiple numeric tokens for multi-digit numbers
         lastTokenType = None
 
@@ -24,6 +27,10 @@ class Parser():
             # In case decimal is found
             if currentTokenType == TokenType.DECIMAL:
                 intBuffer += currentTokenValue
+
+            # Adds a resolved function token value to the queue
+            if currentTokenType == TokenType.FUNCTION:
+                parseQueue.append(currentTokenValue)
 
             # If first token is negative, ensures it will form a negative integer
             if lastTokenType == None and currentTokenValue == '-':
@@ -38,11 +45,12 @@ class Parser():
                 continue
 
             # For building multiple digit values
-            if currentTokenValue not in OPERATORS:
+            if currentTokenValue not in Operators.get_operators_list():
+                # TODO: add condition for alphabetic token
                 if currentTokenType == TokenType.NUMERIC:
                     intBuffer += currentTokenValue
 
-            # To deal with paranthesese
+                    # To deal with paranthesese
             elif currentTokenValue == "(":
                 parseStack.push(currentTokenValue)
 
