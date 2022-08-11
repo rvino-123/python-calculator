@@ -15,7 +15,7 @@ class Parser():
         """Iterates through the tokens and returns a queue in postfix notation format"""
         parseStack = Stack()
         parseQueue = deque()
-        # TODO function buffer
+
         intBuffer = ""  # to combine multiple numeric tokens for multi-digit numbers
         lastTokenType = None
 

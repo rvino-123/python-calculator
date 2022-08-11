@@ -1,5 +1,3 @@
-from lib2to3.pgen2.token import OP
-from struct import pack
 from parser import Parser
 from tokenizer import tokenize
 from tokentypes import Operators
