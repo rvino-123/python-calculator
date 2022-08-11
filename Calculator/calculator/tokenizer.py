@@ -1,5 +1,4 @@
-from calendar import c
-from tokentypes import TokenType, FUNCTIONS, Token, FunctionalToken
+from tokentypes import Token, FunctionalToken
 
 
 def tokenize(str):

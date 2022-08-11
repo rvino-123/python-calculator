@@ -1,4 +1,3 @@
-from ast import arg
 from calculate import Calculator
 import commands
 
@@ -24,13 +23,13 @@ def runCLI():
                 commands.quit()
             result = calculator.calculate(command)
             print(result)
+
     except AttributeError as err:
         print("ERROR: You entered an invalid character")
         commands.quit()
+
     except ZeroDivisionError:
         print("ERROR: Can't divide by zero")
+
     except KeyboardInterrupt:
         commands.quit()
-
-
-runCLI()
